@@ -1,7 +1,5 @@
 package ru.netology.stats;
 
-import java.util.Arrays;
-
 public class StatsService {
     public long totalSells(long[] months){
         long sum = 0;
@@ -12,48 +10,40 @@ public class StatsService {
 
 
     public long averageSells(long[] months){
-        long sum = 0;
-        for (long month : months) {
-            sum += month;}
-        return (sum / months.length);
+        StatsService service = new StatsService();
+        return (service.totalSells(months) / months.length);
     }
 
     public long maxSellMonth(long[] months){
-        long max=0;
-        long monthNumber = 1;
-        for (long month : months) {
-            if (max<=month){
-            max = month;}
-        }
-        for (long month : months) {
-            if (max != month) {
-                monthNumber += 1;
-            } else {break;}
+        long max=months[0];
+        long monthNumber = 0;
+        long i;
+        for (i=0; i< months.length; i++) {
+            if (max<=months[(int) i]){
+                max = months[(int) i];
+                monthNumber = i+1;
+            }
         }
         return monthNumber;
     }
 
     public long minSellMonth(long[] months){
         long min = months[0];
-        long monthNumber = 1;
-        for (long month : months) {
-            if (min>=month){
-            min = month;}
+        long monthNumber = 0;
+        long i;
+        for (i=0; i< months.length; i++) {
+            if (min>=months[(int) i]){
+            min = months[(int) i];
+            monthNumber = i+1;
+            }
         }
-        for (long month : months) {
-            if (min != month) {
-                monthNumber += 1;
-            } else {break;}
-        }
-        return monthNumber;}
+        return monthNumber;
+    }
 
     public long badMonthsCount(long[] months){
+        StatsService service = new StatsService();
         long badCount = 0;
-        long average = 0;
-        long sum = 0;
-        for (long month : months) {
-            sum += month;}
-        average = sum / months.length;
+        long average = service.averageSells(months);
         for (long month : months){
             if (month<average){
                 badCount+=1;
@@ -63,13 +53,10 @@ public class StatsService {
     }
 
     public long goodMonthsCount(long[] months) {
+        StatsService service = new StatsService();
         long goodCount = 0;
-        long average = 0;
-        long sum = 0;
-        for (long month : months) {
-            sum += month;
-        }
-        average = sum / months.length;
+        long average;
+        average = service.averageSells(months);
         for (long month : months) {
             if (month > average) {
                 goodCount += 1;

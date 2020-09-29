@@ -1,7 +1,6 @@
 package ru.netology.stats;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class StatsServiceTest {
@@ -24,7 +23,7 @@ class StatsServiceTest {
 
     @Test
     void maxSellMonth() {
-        long expected = 6;
+        long expected = 8;
         long actual = service.maxSellMonth(months);
         assertEquals(expected,actual);
     }
