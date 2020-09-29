@@ -1,6 +1,7 @@
 package ru.netology.stats;
 
 public class StatsService {
+
     public long totalSells(long[] months){
         long sum = 0;
         for (long month : months) {
@@ -10,8 +11,7 @@ public class StatsService {
 
 
     public long averageSells(long[] months){
-        StatsService service = new StatsService();
-        return (service.totalSells(months) / months.length);
+        return (totalSells(months) / months.length);
     }
 
     public long maxSellMonth(long[] months){
@@ -30,10 +30,10 @@ public class StatsService {
     public long minSellMonth(long[] months){
         long min = months[0];
         long monthNumber = 0;
-        long i;
+        int i;
         for (i=0; i< months.length; i++) {
-            if (min>=months[(int) i]){
-            min = months[(int) i];
+            if (min>=months[i]){
+            min = months[i];
             monthNumber = i+1;
             }
         }
@@ -41,9 +41,8 @@ public class StatsService {
     }
 
     public long badMonthsCount(long[] months){
-        StatsService service = new StatsService();
         long badCount = 0;
-        long average = service.averageSells(months);
+        long average = averageSells(months);
         for (long month : months){
             if (month<average){
                 badCount+=1;
@@ -53,10 +52,8 @@ public class StatsService {
     }
 
     public long goodMonthsCount(long[] months) {
-        StatsService service = new StatsService();
         long goodCount = 0;
-        long average;
-        average = service.averageSells(months);
+        long average = averageSells(months);
         for (long month : months) {
             if (month > average) {
                 goodCount += 1;
