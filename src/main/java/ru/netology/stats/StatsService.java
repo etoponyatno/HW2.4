@@ -11,16 +11,16 @@ public class StatsService {
 
 
     public long averageSells(long[] months){
-        return (totalSells(months) / months.length);
+        return totalSells(months) / months.length;
     }
 
     public long maxSellMonth(long[] months){
         long max=months[0];
         long monthNumber = 0;
-        long i;
+        int i;
         for (i=0; i< months.length; i++) {
-            if (max<=months[(int) i]){
-                max = months[(int) i];
+            if (max<=months[i]){
+                max = months[i];
                 monthNumber = i+1;
             }
         }
